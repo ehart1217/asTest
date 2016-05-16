@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import com.example.ehart.myapplication.manage.FragmentManageActivity;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mFragmentManageBtn;
 
@@ -14,23 +16,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findView();
+        setListener();
     }
 
     private void findView() {
         mFragmentManageBtn = (Button) findViewById(R.id.test_fragment_manage);
     }
 
-    private void setListener(){
+    private void setListener() {
         mFragmentManageBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.test_fragment_manage:
-
-            break;
+                FragmentManageActivity.navigateTo(this);
+                break;
         }
     }
 }

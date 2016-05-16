@@ -4,9 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/activity_fragment_manage_stack_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示fragment列表" />
+
     <FrameLayout
         android:id="@+id/activity_fragment_manage_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
