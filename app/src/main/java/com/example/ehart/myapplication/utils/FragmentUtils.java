@@ -33,18 +33,6 @@ public class FragmentUtils {
         return className.getName();
     }
 
-    /**
-     * 移除fragment，默认没有动画
-     */
-    public static void removeFragment(final Fragment fragment) {
-        FragmentManager fm = getParentFragmentManager(fragment);
-        if (fm != null) {
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.remove(fragment);
-            ft.commit();
-        }
-    }
-
     public static FragmentManager getParentFragmentManager(final Fragment fragment) {
         if (fragment == null) {
             return null;
@@ -60,13 +48,12 @@ public class FragmentUtils {
         return null;
     }
 
-    public static void start(FragmentManager fm, Fragment from, Fragment to, int resId, boolean finishPrevious) {
+    public static void add(FragmentManager fm, Fragment from, Fragment to, int resId, boolean finishPrevious) {
         if (finishPrevious) {
             startWithFinish(fm, from, to, resId);
         } else {
             startWithoutFinish(fm, from, to, resId);
         }
-
     }
 
     public static void show(FragmentManager fm, Fragment from, Fragment to) {

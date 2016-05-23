@@ -91,6 +91,11 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mFragmentManager = getChildFragmentManager();
@@ -124,12 +129,11 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
 
         if (mFragmentA == null || !mFragmentA.isAdded()) {
             mFragmentA = FragmentA.newInstance();
-            FragmentUtils.start(mFragmentManager, mCurrentFragment, mFragmentA, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentA, R.id.fragment_manage_fragment_container, isDeletePrevious);
         } else {
             FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentA);
 
         }
-        mCurrentFragment = mFragmentA;
     }
 
     private void showFragmentB() {
@@ -139,12 +143,11 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
         }
         if (mFragmentB == null || !mFragmentB.isAdded()) {
             mFragmentB = FragmentB.newInstance();
-            FragmentUtils.start(mFragmentManager, mCurrentFragment, mFragmentB, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentB, R.id.fragment_manage_fragment_container, isDeletePrevious);
 
         } else {
             FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentB);
         }
-        mCurrentFragment = mFragmentB;
     }
 
     private void showFragmentC() {
@@ -154,10 +157,13 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
         }
         if (mFragmentC == null || !mFragmentC.isAdded()) {
             mFragmentC = FragmentC.newInstance();
-            FragmentUtils.start(mFragmentManager, mCurrentFragment, mFragmentC, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentC, R.id.fragment_manage_fragment_container, isDeletePrevious);
         } else {
             FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentC);
         }
-        mCurrentFragment = mFragmentC;
+    }
+
+    private void hideFragmentA(){
+
     }
 }
