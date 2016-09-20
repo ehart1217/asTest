@@ -3,32 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
     android:gravity="center">
 
     <Button
-        android:id="@+id/test_fragment_manage"
+        android:id="@+id/bindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fragment管理"/>
+        android:text="bindService"/>
 
     <Button
-        android:id="@+id/study_touch_event"
+        android:id="@+id/startService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Touch事件研究" />
+        android:text="startService"/>
 
     <Button
-        android:id="@+id/start_activity_for_result_study"
+        android:id="@+id/unbindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start activity for result 研究" />
+        android:text="unbindService"/>
 
     <Button
-        android:id="@+id/service_study"
+        android:id="@+id/stopService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="service 生命周期研究" />
-
+        android:text="stopService"/>
 
 </LinearLayout>

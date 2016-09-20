@@ -18,7 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fragmentation.manage.FragmentManageActivity"/>
+        <activity android:name=".fragmentation.manage.FragmentManageActivity" />
+        <activity android:name=".activities.ForResultActivity" />
+        <activity android:name=".activities.TestServiceLifeActivity" />
+        <activity android:name=".touch.TouchEventStudyActivity"/>
+
+        <service android:name=".services.LifeRecycleService" />
     </application>
 
 </manifest>
