@@ -1,4 +1,4 @@
-package com.example.ehart.myapplication.manage;
+package com.example.ehart.myapplication.fragmentation.manage;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import com.example.ehart.myapplication.R;
 import com.example.ehart.myapplication.fragmentation.anim.DefaultNoAnimator;
 import com.example.ehart.myapplication.fragmentation.anim.FragmentAnimator;
-import com.example.ehart.myapplication.utils.FragmentUtils;
+import com.example.ehart.myapplication.fragmentation.utils.FragmentUtils;
 
 /**
  * fragment 基类
@@ -99,7 +99,7 @@ public class BaseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = FragmentUtils.getParentFragmentManager(BaseFragment.this);
-                FragmentUtils.back(fm);
+                FragmentUtils.pop(fm);
             }
         });
     }

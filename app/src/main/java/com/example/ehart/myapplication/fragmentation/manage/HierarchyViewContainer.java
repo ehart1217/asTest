@@ -1,4 +1,5 @@
-package com.example.ehart.myapplication.manage;
+package com.example.ehart.myapplication.fragmentation.manage;
+
 
 import android.content.Context;
 import android.content.res.TypedArray;

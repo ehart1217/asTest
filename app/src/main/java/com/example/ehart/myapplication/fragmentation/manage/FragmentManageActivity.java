@@ -1,4 +1,5 @@
-package com.example.ehart.myapplication.manage;
+package com.example.ehart.myapplication.fragmentation.manage;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ehart.myapplication.R;
-import com.example.ehart.myapplication.utils.FragmentUtils;
+import com.example.ehart.myapplication.fragmentation.utils.FragmentUtils;
 
 /**
  * fragment管理研究一波
@@ -36,7 +37,7 @@ public class FragmentManageActivity extends AppCompatActivity {
             mFragment = (FragmentParent) fm.findFragmentByTag(fragmentTag);
         } else {
             mFragment = FragmentParent.newInstance();
-            FragmentUtils.addFragment(fm, R.id.activity_fragment_manage_container, mFragment, fragmentTag);
+            FragmentUtils.add(fm, mFragment, R.id.activity_fragment_manage_container);
         }
 
 

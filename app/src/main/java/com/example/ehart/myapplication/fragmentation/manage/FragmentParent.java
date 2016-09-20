@@ -1,4 +1,5 @@
-package com.example.ehart.myapplication.manage;
+package com.example.ehart.myapplication.fragmentation.manage;
+
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.example.ehart.myapplication.R;
 import com.example.ehart.myapplication.fragmentation.anim.DefaultNoAnimator;
 import com.example.ehart.myapplication.fragmentation.anim.FragmentAnimator;
-import com.example.ehart.myapplication.utils.FragmentUtils;
+import com.example.ehart.myapplication.fragmentation.utils.FragmentUtils;
 
 /**
  * 父fragment
@@ -35,6 +36,7 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
     private TextView mModeBtn;
 
     private boolean isDeletePrevious = false;
+    private View mPopAllBtn;
 
     public static FragmentParent newInstance() {
 
@@ -60,6 +62,8 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
         mBtnB = rootView.findViewById(R.id.fragment_manage_btn_b);
         mBtnC = rootView.findViewById(R.id.fragment_manage_btn_c);
 
+        mPopAllBtn = rootView.findViewById(R.id.fragment_manage_pop_all_btn);
+
         mModeBtn = (TextView) rootView.findViewById(R.id.fragment_manage_mode_btn);
     }
 
@@ -68,6 +72,7 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
         mBtnB.setOnClickListener(this);
         mBtnC.setOnClickListener(this);
         mModeBtn.setOnClickListener(this);
+        mPopAllBtn.setOnClickListener(this);
     }
 
     private void initModeBtn() {
@@ -91,14 +96,10 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mFragmentManager = getChildFragmentManager();
+        FragmentUtils.add(mFragmentManager, FragmentA.newInstance(), R.id.fragment_manage_fragment_container);
     }
 
     @Override
@@ -118,52 +119,43 @@ public class FragmentParent extends BaseFragment implements View.OnClickListener
         } else if (id == R.id.fragment_manage_mode_btn) {
             isDeletePrevious = !isDeletePrevious;
             initModeBtn();
+        } else if (id == R.id.fragment_manage_pop_all_btn) {
+            FragmentUtils.popAll(mFragmentManager);
         }
     }
 
     private void showFragmentA() {
-        mCurrentFragment = FragmentUtils.getTopFragment(mFragmentManager);
-        if (mCurrentFragment != null && mCurrentFragment == mFragmentA) {
-            return;
-        }
 
         if (mFragmentA == null || !mFragmentA.isAdded()) {
             mFragmentA = FragmentA.newInstance();
-            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentA, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.addWithBackStack(mFragmentManager, mFragmentA, R.id.fragment_manage_fragment_container, isDeletePrevious);
         } else {
-            FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentA);
+            FragmentUtils.showWithBackStack(mFragmentManager, mFragmentA);
 
         }
     }
 
     private void showFragmentB() {
-        mCurrentFragment = FragmentUtils.getTopFragment(mFragmentManager);
-        if (mCurrentFragment != null && mCurrentFragment == mFragmentB) {
-            return;
-        }
         if (mFragmentB == null || !mFragmentB.isAdded()) {
             mFragmentB = FragmentB.newInstance();
-            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentB, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.addWithBackStack(mFragmentManager, mFragmentB, R.id.fragment_manage_fragment_container, isDeletePrevious);
 
         } else {
-            FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentB);
+            FragmentUtils.showWithBackStack(mFragmentManager, mFragmentB);
         }
     }
 
     private void showFragmentC() {
-        mCurrentFragment = FragmentUtils.getTopFragment(mFragmentManager);
-        if (mCurrentFragment != null && mCurrentFragment == mFragmentC) {
-            return;
-        }
         if (mFragmentC == null || !mFragmentC.isAdded()) {
             mFragmentC = FragmentC.newInstance();
-            FragmentUtils.add(mFragmentManager, mCurrentFragment, mFragmentC, R.id.fragment_manage_fragment_container, isDeletePrevious);
+            FragmentUtils.addWithBackStack(mFragmentManager, mFragmentC, R.id.fragment_manage_fragment_container, isDeletePrevious);
         } else {
-            FragmentUtils.show(mFragmentManager, mCurrentFragment, mFragmentC);
+            FragmentUtils.showWithBackStack(mFragmentManager, mFragmentC);
         }
     }
 
-    private void hideFragmentA(){
-
+    private boolean isDeletePrevious() {
+        return mFragmentManager.getBackStackEntryCount() > 1;
     }
+
 }
